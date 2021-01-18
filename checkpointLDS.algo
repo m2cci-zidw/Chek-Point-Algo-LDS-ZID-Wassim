@@ -1,0 +1,130 @@
+ALGORITHM Probleme1-solution1
+VAR
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    sum,i,j : INTEGER
+BEGIN
+    write( 'entrer le premier set ',set1);
+    read (set1);
+    write( 'entrer la deuxième set ',set2);
+    read (set2);
+    FOR i FROM 0 TO set1.longueur STEP 1  DO
+        WHILE (set1[i]<> set2[j] and j< set2.longueur) DO
+            j=j+1
+        END_WHILE
+        IF ( j =set2.longueur) THEN
+            sum = sum +set1[i];
+         END_IF
+        
+    END_FOR
+
+    FOR j FROM 0 TO set2.longueur STEP 1  DO
+        WHILE (set2[j]<> set1[i] and i< set1.longueur) DO
+            i=i+1
+        END_WHILE
+        IF ( i =set1.longueur) THEN
+            sum = sum +set2[j];
+        END_IF
+    END_FOR
+    write ('the sum of all distinct elements from the set:', sum);
+
+END
+
+// algo PB1 solution2
+ALGORITHM Probleme1-solution2
+VAR
+   htab: HASH_TABLE<INTEGER,INTEGER>;
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    sum,i,j,k : INTEGER
+BEGIN
+    write( 'entrer le premier set ',set1);
+    read (set1);
+    write( 'entrer la deuxième set ',set2);
+    read (set2);
+    FOR i FROM 0 TO set1.longueur-1 STEP 1  DO
+        htab.insert(str1[i],1);
+    END_FOR
+    FOR j FROM 0 TO set2.longueur-1 STEP 1  DO
+        IF (htab.lookup(set2[j])== true) THEN
+            htab.insert(str2[j],2);
+        ELSE
+            htab.insert(str2[j],1);
+        END_IF
+
+    END_IF
+        
+    END_FOR
+    FOR k FROM 0 TO htab.longueur-1 STEP 1  DO
+        IF (htab.getvalues(k)=1) THEN
+            sum= sum+htab.getkey(k);
+            k=k+1
+        END_IF
+    END_FOR
+END
+// ***********PB2 solution1 ************
+ALGORITHM Probleme2-solution1
+VAR
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    sum,i,j : INTEGER
+BEGIN
+    write( 'entrer le premier set ',set1);
+    read (set1);
+    write( 'entrer la deuxième set ',set2);
+    read (set2);
+    FOR i FROM 0 TO set1.longueur STEP 1  DO
+        WHILE (set1[i]<> set2[j] and j< set2.longueur) DO
+            j=j+1
+        END_WHILE
+        IF (set1[i] == set2[j]) THEN
+            sum = sum +set1[i];
+         END_IF
+        
+    END_FOR
+
+    FOR j FROM 0 TO set2.longueur STEP 1  DO
+        WHILE (set2[j]<> set1[i] and i< set1.longueur) DO
+            i=i+1
+        END_WHILE
+        IF (set2[j] == set1[i])  THEN
+            sum = sum +set2[j];
+        END_IF
+    END_FOR
+    write ('the sum of all distinct elements from the set:', sum);
+
+END
+
+
+// algo PB2 solution2
+ALGORITHM Probleme2-solution2
+VAR
+   htab: HASH_TABLE<INTEGER,INTEGER>;
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    sum,i,j,k : INTEGER
+BEGIN
+    write( 'entrer le premier set ',set1);
+    read (set1);
+    write( 'entrer la deuxième set ',set2);
+    read (set2);
+    FOR i FROM 0 TO set1.longueur-1 STEP 1  DO
+        htab.insert(str1[i],1);
+    END_FOR
+    FOR j FROM 0 TO set2.longueur-1 STEP 1  DO
+        IF (htab.lookup(set2[j])== true) THEN
+            htab.insert(str2[j],2);
+        ELSE
+            htab.insert(str2[j],1);
+        END_IF
+
+    END_IF
+        
+    END_FOR
+    FOR k FROM 0 TO htab.longueur-1 STEP 1  DO
+        IF (htab.getvalues(k)=2) THEN
+            sum= sum+htab.getkey(k);
+            k=k+1
+        END_IF
+    END_FOR
+END
