@@ -2,14 +2,18 @@ ALGORITHM Probleme1-solution1
 VAR
     set1 : ARRAY_OF INTEGER[];
     set2 : ARRAY_OF INTEGER[];
-    sum,i,j : INTEGER
+    sum,i,j,n1,n2: INTEGER
 BEGIN
+    write( 'entrer la longueur de set1' n1)
+    write( 'entrer la longueur de set1' n2)
     write( 'entrer le premier set ',set1);
     read (set1);
     write( 'entrer la deuxième set ',set2);
     read (set2);
-    FOR i FROM 0 TO set1.longueur STEP 1  DO
-        WHILE (set1[i]<> set2[j] and j< set2.longueur) DO
+    FOR i FROM 0 TO set1.longueur-1 STEP 1  DO
+        j:=0;
+        WHILE (set1[i]<> set2[j] and j< set2.longueur) 
+        // 3   3 
             j=j+1
         END_WHILE
         IF ( j =set2.longueur) THEN
@@ -18,7 +22,8 @@ BEGIN
         
     END_FOR
 
-    FOR j FROM 0 TO set2.longueur STEP 1  DO
+    FOR j FROM 0 TO set2.longueur-1 STEP 1  DO
+        i:=0;
         WHILE (set2[j]<> set1[i] and i< set1.longueur) DO
             i=i+1
         END_WHILE
@@ -30,14 +35,20 @@ BEGIN
 
 END
 
-// algo PB1 solution2
+
+
+
+// *************algo PB1 solution2**************************
 ALGORITHM Probleme1-solution2
 VAR
    htab: HASH_TABLE<INTEGER,INTEGER>;
     set1 : ARRAY_OF INTEGER[];
     set2 : ARRAY_OF INTEGER[];
-    sum,i,j,k : INTEGER
+    tab  : ARRAY_OF INTEGER[];
+    sum,i,j,k,n1,n2 : INTEGER
 BEGIN
+    write( 'entrer la longueur de set1' n1)
+    write( 'entrer la longueur de set1' n2)
     write( 'entrer le premier set ',set1);
     read (set1);
     write( 'entrer la deuxième set ',set2);
@@ -55,25 +66,33 @@ BEGIN
     END_IF
         
     END_FOR
-    FOR k FROM 0 TO htab.longueur-1 STEP 1  DO
-        IF (htab.getvalues(k)=1) THEN
-            sum= sum+htab.getkey(k);
-            k=k+1
-        END_IF
+    tab = htab.getvalues(1) 
+    FOR k FROM 0 TO tab.longueur-1 STEP 1  DO
+        sum= sum+tab(k);
+        k=k+1
     END_FOR
+    write ('the sum of all distinct elements from the set:', sum);
 END
-// ***********PB2 solution1 ************
+
+
+
+
+
+// ***********************PB2 solution1 ****************************
 ALGORITHM Probleme2-solution1
 VAR
     set1 : ARRAY_OF INTEGER[];
     set2 : ARRAY_OF INTEGER[];
-    sum,i,j : INTEGER
+    sum,i,j,n1,n2 : INTEGER
 BEGIN
+    write( 'entrer la longueur de set1' n1)
+    write( 'entrer la longueur de set1' n2)
     write( 'entrer le premier set ',set1);
     read (set1);
     write( 'entrer la deuxième set ',set2);
     read (set2);
-    FOR i FROM 0 TO set1.longueur STEP 1  DO
+    FOR i FROM 0 TO set1.longueur-1 STEP 1  DO
+        j:=0;
         WHILE (set1[i]<> set2[j] and j< set2.longueur) DO
             j=j+1
         END_WHILE
@@ -83,7 +102,8 @@ BEGIN
         
     END_FOR
 
-    FOR j FROM 0 TO set2.longueur STEP 1  DO
+    FOR j FROM 0 TO set2.longueur-1 STEP 1  DO
+        i:=0;
         WHILE (set2[j]<> set1[i] and i< set1.longueur) DO
             i=i+1
         END_WHILE
@@ -91,19 +111,31 @@ BEGIN
             sum = sum +set2[j];
         END_IF
     END_FOR
-    write ('the sum of all distinct elements from the set:', sum);
+    write ('the sum of overlapping   elements from the set:', sum);
 
 END
 
 
-// algo PB2 solution2
+
+
+
+
+
+
+
+
+
+// ****************algo PB2 solution2********************
 ALGORITHM Probleme2-solution2
 VAR
    htab: HASH_TABLE<INTEGER,INTEGER>;
     set1 : ARRAY_OF INTEGER[];
     set2 : ARRAY_OF INTEGER[];
-    sum,i,j,k : INTEGER
+    tab : ARRAY_OF INTEGER[];
+    sum,i,j,k,n1,n2 : INTEGER;
 BEGIN
+    write( 'entrer la longueur de set1' n1)
+    write( 'entrer la longueur de set1' n2)
     write( 'entrer le premier set ',set1);
     read (set1);
     write( 'entrer la deuxième set ',set2);
@@ -121,10 +153,12 @@ BEGIN
     END_IF
         
     END_FOR
-    FOR k FROM 0 TO htab.longueur-1 STEP 1  DO
-        IF (htab.getvalues(k)=2) THEN
-            sum= sum+htab.getkey(k);
-            k=k+1
-        END_IF
+
+        
+    tab = htab.getvalues(2) 
+    FOR k FROM 0 TO tab.longueur-1 STEP 1  DO
+        sum= sum+tab(k);
+        k=k+1
     END_FOR
+    write ('the sum of overlapping  elements from the set:', sum);
 END
